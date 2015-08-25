@@ -52,3 +52,14 @@ void Foo::Bar(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 ```
 the example above is just to show what you have to do to use the module. it's not a fully functioning program. for a working example check the `test` folder.
+
+## install
+``` bash
+npm i addon-emitter
+```
+in `binding.gyp`:
+``` gyp
+{
+  'include_dirs': [ "<!(node -e \"require('addon-emitter')\")" ]
+}
+```
