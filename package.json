@@ -1,0 +1,24 @@
+{
+  "name": "addon-emitter",
+  "version": "0.0.1",
+  "description": "event emitter class for native addons",
+  "main": "include_dirs.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gerhardberger/addon-emitter.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "native",
+    "event",
+    "emitter",
+    "addon"
+  ],
+  "author": "@native_cat",
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.0.5"
+  }
+}
