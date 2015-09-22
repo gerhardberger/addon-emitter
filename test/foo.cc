@@ -15,13 +15,13 @@ void Foo::Init(v8::Local<v8::Object> exports) {
 
   // Prototype
   Nan::SetPrototypeMethod(tpl, "bar", Bar);
-  Nan::SetPrototypeMethod(tpl, "on", Emitter::On); // Emitter's prototype method 
+  Nan::SetPrototypeMethod(tpl, "on", Emitter::On); // Emitter's prototype method
 
   constructor.Reset(tpl->GetFunction());
   exports->Set(Nan::New("Foo").ToLocalChecked(), tpl->GetFunction());
 }
 
-void Foo::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+NAN_METHOD(Foo::New) {
   if (info.IsConstructCall()) {
     Foo *foo = new Foo();
     foo->Wrap(info.This());
@@ -34,9 +34,10 @@ void Foo::New(const Nan::FunctionCallbackInfo<v8::Value>& info) {
   }
 }
 
-void Foo::Bar(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+NAN_METHOD(Foo::Bar) {
   Foo *foo = ObjectWrap::Unwrap<Foo>(info.Holder());
 
-  foo->Emit(Nan::New("sus").ToLocalChecked()
-            , Nan::New("pls").ToLocalChecked(), 5);
+  //foo->Emit(Nan::New("sus").ToLocalChecked()
+  //          , Nan::New("pls").ToLocalChecked(), Nan::New(5));
+  foo->Emit2(std::string("sus"));
 }

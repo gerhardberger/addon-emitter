@@ -8,12 +8,12 @@ class Foo : public Emitter {
 public:
   static void Init(v8::Local<v8::Object> exports);
 
+  static NAN_METHOD(New);
+  static NAN_METHOD(Bar);
+
 private:
   explicit Foo ();
   ~Foo ();
-
-  static void New (const Nan::FunctionCallbackInfo<v8::Value>& info);
-  static void Bar (const Nan::FunctionCallbackInfo<v8::Value>& info);
 
   static Nan::Persistent<v8::Function> constructor;
 };
