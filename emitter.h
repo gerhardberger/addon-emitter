@@ -19,7 +19,7 @@ public:
 
   template<typename... Args>
   void Emit (v8::Local<v8::Value> info, const Args&... args) {
-    v8::String::Utf8Value name(info->ToString());
+    Nan::Utf8String name(info->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()));
 
     if (m[std::string(*name)].empty()) return;
 
@@ -38,7 +38,7 @@ public:
 
     Emitter *emitter = ObjectWrap::Unwrap<Emitter>(info.Holder());
 
-    v8::String::Utf8Value name(info[0]->ToString());
+    Nan::Utf8String name(info[0]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()));
     v8::Local<v8::Function> cb = info[1].As<v8::Function>();
 
     Nan::Persistent<v8::Function> persistent_cb;
